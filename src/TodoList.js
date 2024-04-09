@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from 'react';
 
+
 function TodoList() {
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState("");
@@ -21,9 +22,9 @@ function TodoList() {
         e.preventDefault();
         if (!input.trim()) return; // Ignore empty todos
             const newTodo = {
-                id: Date.now(),
-                text: input,
-                completed: false
+                id: Math.random(), // random number for each of the TODO
+                text: input,  // text for each of the TODO
+                completed: false // Completed should be false
             };
         console.log("✅ Created todo " + input);
         setTodos(oldTodos => [...oldTodos, newTodo]); // this is how we add new todos 
@@ -35,7 +36,6 @@ function TodoList() {
         setTodos(todos =>
             todos.map(todo => 
                 todo.id === id ? { ...todo, completed: !todo.completed } : todo // this is how we update the todos
-                
             )
         );
     }
@@ -52,6 +52,7 @@ function TodoList() {
         <>
             <div>TodoList</div>
             <div className='todo-form'>
+                
                 <form onSubmit={addTodo}>
                     <input type='text' value={input} onChange={e => setInput(e.target.value)}/>
                     <button type='submit'>Create todo</button>
