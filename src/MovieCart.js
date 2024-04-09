@@ -2,17 +2,9 @@ import React from "react";
 import './index.css'
 
 class MovieCart extends React.Component{
-    constructor(){
-        super(); // this is a general in JS whenever we call a construcor we need to call super constructor of a class
-        this.state = {
-            title:"The Avengers from state",
-            plot:"hello world from state ",
-            price:199,
-            rating:2
-        }
-    }
     render(){
-        const {title,plot,price,rating} = this.state; // destructuring of an object otherwise not necessory
+        const {title,plot,price,rating,stars,fav,incart} = this.props.movies
+
         return(
             <>
                <div className="main">
@@ -26,9 +18,15 @@ class MovieCart extends React.Component{
                             <div className="price">RS {price}</div>
                             <div className="footer">
                                 <div className="rating">{rating}</div>
-                                <div className="stars">5</div>
-                                <button className="fav-button">Fav Button</button>
-                                <button className="cart-button">Add to cart</button>
+                                <div className="stars">{stars} Stars</div>
+                          
+                                {fav ? <button className="unfav-button" onClick={this.handleFav}>UnFav Button</button> :
+                                      <button className="fav-button" onClick={this.handleFav}>Fav Button</button>
+                                }
+                                
+                                <button className="cart-button" onClick={this.handleAddCart}>{incart?"add to cart":"Remove from cart" }</button>
+                                <button className="increase" onClick={() => {this.props.addStars(this.props.movies)}}>Increase</button>
+                                <button className="decrease" onClick={this.removeStars}>Descrease</button>
                             </div>
                         </div>
                     </div>
