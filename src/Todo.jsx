@@ -1,7 +1,7 @@
 import React, { useState , useEffect} from 'react';
 
 
-function TodoList() {
+function Todo() {
     const [todos, setTodos] = useState([]);
     const [input, setInput] = useState("");
 
